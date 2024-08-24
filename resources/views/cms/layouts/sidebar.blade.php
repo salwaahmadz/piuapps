@@ -84,8 +84,8 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/category*') ? 'active' : '' }}">
+            <a href="{{ route('apps.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Kategori">Kategori</div>
             </a>

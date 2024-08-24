@@ -43,6 +43,14 @@ Route::group(['prefix' => 'apps'], function () {
             Route::post('/destroy', [\App\Http\Controllers\CMS\PengajarController::class, 'destroy'])->name('apps.pengajar.destroy');
         });
 
+        Route::group(['prefix' => 'kategori'], function () {
+            Route::get('/', [\App\Http\Controllers\CMS\CategoryController::class, 'index'])->name('apps.category.index');
+            Route::get('/list', [\App\Http\Controllers\CMS\CategoryController::class, 'list'])->name('apps.category.list');
+            Route::get('/create', [\App\Http\Controllers\CMS\CategoryController::class, 'create'])->name('apps.category.create');
+            Route::post('/store', [\App\Http\Controllers\CMS\CategoryController::class, 'store'])->name('apps.category.store');
+            Route::post('/destroy', [\App\Http\Controllers\CMS\CategoryController::class, 'destroy'])->name('apps.category.destroy');
+        });
+        
         Route::group(['prefix' => 'data'], function () {
             Route::get('/kategori', [\App\Http\Controllers\CMS\DataController::class, 'kategori'])->name('data.kategori');
         });
