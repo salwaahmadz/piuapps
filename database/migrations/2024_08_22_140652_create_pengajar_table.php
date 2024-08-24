@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peserta', function (Blueprint $table) {
+        Schema::create('pengajar', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique()->nullable();
-            $table->foreignId('kategori_id')->constrained('categories')->cascadeOnDelete();
             $table->string('nama', 100);
             $table->date('tgl_lahir');
             $table->string('nomor_hp')->nullable()->unique();
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peserta');
+        Schema::dropIfExists('pengajar');
     }
 };

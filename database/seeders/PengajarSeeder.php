@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class PesertaSeeder extends Seeder
+class PengajarSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,10 +17,9 @@ class PesertaSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('peserta')->insert([
+        for ($i = 0; $i < 5; $i++) {
+            DB::table('pengajar')->insert([
                 'uuid'        => Str::uuid(),
-                'kategori_id' => 1,
                 'nama'        => $faker->firstName(),
                 'tgl_lahir'   => $faker->date('y-m-d'),
                 'nomor_hp'    => $faker->phoneNumber(),

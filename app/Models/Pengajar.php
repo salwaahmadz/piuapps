@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Peserta extends Model
+class Pengajar extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'peserta';
+    protected $table = 'pengajar';
 
     protected $fillable = [
         'uuid',
@@ -22,9 +22,4 @@ class Peserta extends Model
         'created_at',
         'updated_at'
     ];
-
-    public function kategori()
-    {
-        return $this->belongsTo(Category::class, 'kategori_id');
-    }
 }

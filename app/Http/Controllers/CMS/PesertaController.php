@@ -45,6 +45,7 @@ class PesertaController extends Controller
             'nama' => 'required|string|max:36',
             'kategori' => 'required|integer',
             'tgl_lahir' => 'required|date',
+            'nomor_hp' => 'nullable|numeric',
         ]);
 
         $payload = [
@@ -52,6 +53,7 @@ class PesertaController extends Controller
             'nama' => $request->nama,
             'kategori_id' => $request->kategori,
             'tgl_lahir' => $request->tgl_lahir,
+            'nomor_hp' => $request->nomor_hp,
             'created_at' => now(),
             'updated_at' => now(),
         ];

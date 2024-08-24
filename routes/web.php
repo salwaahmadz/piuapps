@@ -35,6 +35,14 @@ Route::group(['prefix' => 'apps'], function () {
             Route::post('/destroy', [\App\Http\Controllers\CMS\PesertaController::class, 'destroy'])->name('apps.peserta.destroy');
         });
 
+        Route::group(['prefix' => 'pengajar'], function () {
+            Route::get('/', [\App\Http\Controllers\CMS\PengajarController::class, 'index'])->name('apps.pengajar.index');
+            Route::get('/list', [\App\Http\Controllers\CMS\PengajarController::class, 'list'])->name('apps.pengajar.list');
+            Route::get('/create', [\App\Http\Controllers\CMS\PengajarController::class, 'create'])->name('apps.pengajar.create');
+            Route::post('/store', [\App\Http\Controllers\CMS\PengajarController::class, 'store'])->name('apps.pengajar.store');
+            Route::post('/destroy', [\App\Http\Controllers\CMS\PengajarController::class, 'destroy'])->name('apps.pengajar.destroy');
+        });
+
         Route::group(['prefix' => 'data'], function () {
             Route::get('/kategori', [\App\Http\Controllers\CMS\DataController::class, 'kategori'])->name('data.kategori');
         });

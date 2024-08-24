@@ -77,8 +77,8 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/pengajar*') ? 'active' : '' }}">
+            <a href="{{ route('apps.pengajar.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Pengajar">Pengajar</div>
             </a>

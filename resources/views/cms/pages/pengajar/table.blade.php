@@ -2,9 +2,8 @@
     <thead>
         <th>No</th>
         <th>Nama</th>
-        <th>Kategori</th>
         <th>Tanggal Lahir</th>
-        <th>No HP</th>
+        <th>Nomor HP</th>
         <th>Status</th>
         <th>Aksi</th>
     </thead>
@@ -30,10 +29,7 @@
                     [1, 'asc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.peserta.list') !!}",
-                    data: {
-                        kategori: "{{ Request::get('kategori') }}"
-                    }
+                    url: "{!! route('apps.pengajar.list') !!}",
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -44,11 +40,6 @@
                     {
                         data: 'nama',
                         name: 'nama',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'kategori.kategori',
-                        name: 'kategori.kategori',
                         defaultContent: '-'
                     },
                     {
@@ -64,9 +55,8 @@
                     {
                         data: 'status',
                         name: 'status',
-                        defaultContent: '-',
                         render: function(data) {
-                            return data == 1 ? 'Aktif' : 'Tidak Aktif'; 
+                            return data === 1 ? "Aktif" : "Tidak Aktif"
                         }
                     },
                     {
@@ -80,19 +70,19 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.peserta.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
+                <a href="{{ route('apps.pengajar.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Pengajar Baru">Tambah</a>
             `);
 
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()
 
                 let id = $(this).data('id');
-                let url = "{!! route('apps.peserta.destroy') !!}";
+                let url = "{!! route('apps.pengajar.destroy') !!}";
 
                 Swal.fire({
-                    title: 'Hapus Peserta?',
+                    title: 'Hapus Pengajar?',
                     icon: 'warning',
-                    text: "Apakah kamu yakin ingin menghapus peserta ini?",
+                    text: "Apakah kamu yakin ingin menghapus pengajar ini?",
                     showCancelButton: true,
                     confirmButtonColor: '#DC3741',
                     cancelButtonColor: '#6C757D',
