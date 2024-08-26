@@ -51,8 +51,35 @@ Route::group(['prefix' => 'apps'], function () {
             Route::post('/destroy', [\App\Http\Controllers\CMS\CategoryController::class, 'destroy'])->name('apps.category.destroy');
         });
         
+        Route::group(['prefix' => 'kegiatan'], function () {
+            Route::get('/', [\App\Http\Controllers\CMS\KegiatanController::class, 'index'])->name('apps.kegiatan.index');
+            Route::get('/list', [\App\Http\Controllers\CMS\KegiatanController::class, 'list'])->name('apps.kegiatan.list');
+            Route::get('/create', [\App\Http\Controllers\CMS\KegiatanController::class, 'create'])->name('apps.kegiatan.create');
+            Route::post('/store', [\App\Http\Controllers\CMS\KegiatanController::class, 'store'])->name('apps.kegiatan.store');
+            Route::post('/destroy', [\App\Http\Controllers\CMS\KegiatanController::class, 'destroy'])->name('apps.kegiatan.destroy');
+        });
+
+        Route::group(['prefix' => 'keuangan'], function () {
+            Route::group(['prefix' => 'kurban'], function () {
+                Route::get('/', [\App\Http\Controllers\CMS\KeuanganController::class, 'indexkr'])->name('apps.kurban.index');
+                Route::get('/list', [\App\Http\Controllers\CMS\KeuanganController::class, 'listkr'])->name('apps.kurban.list');
+                Route::get('/create', [\App\Http\Controllers\CMS\KeuanganController::class, 'createkr'])->name('apps.kurban.create');
+                Route::post('/store', [\App\Http\Controllers\CMS\KeuanganController::class, 'storekr'])->name('apps.kurban.store');
+                Route::post('/destroy', [\App\Http\Controllers\CMS\KeuanganController::class, 'destroykr'])->name('apps.kurban.destroy');
+            });
+
+            Route::group(['prefix' => 'kas'], function () {
+                Route::get('/', [\App\Http\Controllers\CMS\KeuanganController::class, 'indexks'])->name('apps.kas.index');
+                Route::get('/list', [\App\Http\Controllers\CMS\KeuanganController::class, 'listks'])->name('apps.kas.list');
+                Route::get('/create', [\App\Http\Controllers\CMS\KeuanganController::class, 'createks'])->name('apps.kas.create');
+                Route::post('/store', [\App\Http\Controllers\CMS\KeuanganController::class, 'storeks'])->name('apps.kas.store');
+                Route::post('/destroy', [\App\Http\Controllers\CMS\KeuanganController::class, 'destroyks'])->name('apps.kas.destroy');
+            });
+        });
+
         Route::group(['prefix' => 'data'], function () {
             Route::get('/kategori', [\App\Http\Controllers\CMS\DataController::class, 'kategori'])->name('data.kategori');
+            Route::get('/peserta', [\App\Http\Controllers\CMS\DataController::class, 'peserta'])->name('data.peserta');
         });
     });
 });

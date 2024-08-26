@@ -96,8 +96,8 @@
             <span class="menu-header-text">Kegiatan</span>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/kegiatan*') ? 'active' : '' }}">
+            <a href="{{ route('apps.kegiatan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
                 <div data-i18n="Kegiatan">Kegiatan</div>
             </a>
@@ -108,15 +108,15 @@
             <span class="menu-header-text">Keuangan</span>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/keuangan/kurban*') ? 'active' : '' }}">
+            <a href="{{ route('apps.kurban.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
                 <div data-i18n="Kurban">Kurban</div>
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/keuangan/kas*') ? 'active' : '' }}">
+            <a href="{{ route('apps.kas.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
                 <div data-i18n="Kas">Kas</div>
             </a>

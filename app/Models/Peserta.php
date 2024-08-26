@@ -25,6 +25,11 @@ class Peserta extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(Category::class, 'kategori_id');
+        return $this->belongsTo(Category::class, 'kategori_id', 'id');
+    }
+
+    public function keuangan()
+    {
+        return $this->hasMany(Keuangan::class, 'peserta_id', 'id');
     }
 }

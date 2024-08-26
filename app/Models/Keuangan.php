@@ -6,18 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Keuangan extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'keuangan';
 
     protected $fillable = [
-        'kategori',
+        'peserta_id',
+        'nominal',
+        'type',
+        'tgl_nabung',
     ];
 
     public function peserta()
     {
-        return $this->hasMany(Peserta::class, 'kategori_id', 'id');
+        return $this->belongsTo(Peserta::class);
     }
 }

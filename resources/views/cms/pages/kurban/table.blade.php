@@ -2,11 +2,9 @@
     <thead>
         <th>No</th>
         <th>Nama</th>
-        <th>Kategori</th>
-        <th>Tanggal Lahir</th>
-        <th>No HP</th>
-        <th>Status</th>
-        <th>Aksi</th>
+        <th>Tipe</th>
+        <th>Total Tabungan</th>
+        <th class="text-center">Aksi</th>
     </thead>
     <tbody>
     </tbody>
@@ -30,7 +28,10 @@
                     [1, 'asc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.peserta.list') !!}",
+                    url: "{!! route('apps.kurban.list') !!}",
+                    data: {
+                        peserta: "{{ Request::get('peserta') }}"
+                    }
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -39,31 +40,24 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'nama',
+                        data: 'peserta.nama',
+                        name: 'peserta.nama',
                         defaultContent: '-'
                     },
                     {
-                        data: 'kategori.kategori',
-                        name: 'kategori.kategori',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'tgl_lahir',
-                        name: 'tgl_lahir',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'nomor_hp',
-                        name: 'nomor_hp',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
+                        data: 'type',
+                        name: 'type',
                         defaultContent: '-',
                         render: function(data) {
-                            return data == 1 ? 'Aktif' : 'Tidak Aktif'; 
+                            return data.charAt(0).toUpperCase() + data.slice(1)
+                        }
+                    },
+                    {
+                        data: 'total_nominal',
+                        name: 'total_nominal',
+                        defaultContent: '-',
+                        render: function(data) {
+                            return formatRp(data)
                         }
                     },
                     {
@@ -77,19 +71,19 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.peserta.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
+                <a href="{{ route('apps.kurban.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
             `);
 
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()
 
                 let id = $(this).data('id');
-                let url = "{!! route('apps.peserta.destroy') !!}";
+                let url = "{!! route('apps.kurban.destroy') !!}";
 
                 Swal.fire({
-                    title: 'Hapus Peserta?',
+                    title: 'Hapus Record?',
                     icon: 'warning',
-                    text: "Apakah kamu yakin ingin menghapus peserta ini?",
+                    text: "Apakah kamu yakin ingin menghapus record ini?",
                     showCancelButton: true,
                     confirmButtonColor: '#DC3741',
                     cancelButtonColor: '#6C757D',
