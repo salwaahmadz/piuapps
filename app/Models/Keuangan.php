@@ -13,10 +13,12 @@ class Keuangan extends Model
     protected $table = 'keuangan';
 
     protected $fillable = [
+        'uuid',
         'peserta_id',
         'nominal',
         'type',
         'tgl_nabung',
+        'created_by'
     ];
 
     public function peserta()

@@ -61,11 +61,14 @@ Route::group(['prefix' => 'apps'], function () {
 
         Route::group(['prefix' => 'keuangan'], function () {
             Route::group(['prefix' => 'kurban'], function () {
-                Route::get('/', [\App\Http\Controllers\CMS\KeuanganController::class, 'indexkr'])->name('apps.kurban.index');
-                Route::get('/list', [\App\Http\Controllers\CMS\KeuanganController::class, 'listkr'])->name('apps.kurban.list');
-                Route::get('/create', [\App\Http\Controllers\CMS\KeuanganController::class, 'createkr'])->name('apps.kurban.create');
-                Route::post('/store', [\App\Http\Controllers\CMS\KeuanganController::class, 'storekr'])->name('apps.kurban.store');
-                Route::post('/destroy', [\App\Http\Controllers\CMS\KeuanganController::class, 'destroykr'])->name('apps.kurban.destroy');
+                Route::get('/', [\App\Http\Controllers\CMS\KeuanganController::class, 'indexKurban'])->name('apps.kurban.index');
+                Route::get('/list', [\App\Http\Controllers\CMS\KeuanganController::class, 'listKurban'])->name('apps.kurban.list');
+                Route::get('/{uuid}/detail', [\App\Http\Controllers\CMS\KeuanganController::class, 'detailKurban'])->name('apps.kurban.detail');
+                Route::get('/detail-list', [\App\Http\Controllers\CMS\KeuanganController::class, 'detailListKurban'])->name('apps.kurban.detail_list');
+                Route::post('/update-nominal' , [\App\Http\Controllers\CMS\KeuanganController::class, 'updateNominalKurban'])->name('apps.kurban.update_nominal');
+                Route::get('/create', [\App\Http\Controllers\CMS\KeuanganController::class, 'createKurban'])->name('apps.kurban.create');
+                Route::post('/store', [\App\Http\Controllers\CMS\KeuanganController::class, 'storeKurban'])->name('apps.kurban.store');
+                Route::post('/destroy', [\App\Http\Controllers\CMS\KeuanganController::class, 'destroyKurban'])->name('apps.kurban.destroy');
             });
 
             Route::group(['prefix' => 'kas'], function () {

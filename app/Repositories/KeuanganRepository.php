@@ -32,6 +32,17 @@ class KeuanganRepository implements KeuanganRepositoryInterface
             ->groupBy('peserta_id');
     }
 
+    public function getPesertaKurbanDetail($id)
+    {
+        try {
+            return Keuangan::with('peserta')->where('peserta_id', $id)->get();
+        } catch (\Throwable $th) {
+            return 'null';
+        }
+
+        return $kurbanDetail;
+    }
+
     public function storeKurban($payload)
     {
         try {
@@ -46,6 +57,23 @@ class KeuanganRepository implements KeuanganRepositoryInterface
             return 'error';
         }
         return $keuangan;
+    }
+
+    public function updateNominal($payload)
+    {
+        try {
+            DB::beginTransaction();
+
+            $nominal = Keuangan::where('id', $payload['id'])->update($payload);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return 'error';
+        }
+
+        return $nominal;
     }
 
     public function getKas($params) {}

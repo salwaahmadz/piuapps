@@ -2,8 +2,8 @@
     <thead>
         <th>No</th>
         <th>Nama</th>
-        <th>Tipe</th>
-        <th>Total Tabungan</th>
+        <th>Nominal</th>
+        <th>Tanggal Nabung</th>
         <th class="text-center">Aksi</th>
     </thead>
     <tbody>
@@ -25,10 +25,13 @@
                 serverSide: true,
                 searchDelay: 1000,
                 order: [
-                    [1, 'asc']
+                    [3, 'desc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.kurban.list') !!}",
+                    url: "{!! route('apps.kurban.detail_list') !!}",
+                    data: {
+                        peserta: "{{ Request::segment(4) }}"
+                    }
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -42,20 +45,17 @@
                         defaultContent: '-'
                     },
                     {
-                        data: 'type',
-                        name: 'type',
-                        defaultContent: '-',
-                        render: function(data) {
-                            return data.charAt(0).toUpperCase() + data.slice(1)
-                        }
-                    },
-                    {
-                        data: 'total_nominal',
-                        name: 'total_nominal',
+                        data: 'nominal',
+                        name: 'nominal',
                         defaultContent: '-',
                         render: function(data) {
                             return formatRp(data)
                         }
+                    },
+                    {
+                        data: 'tgl_nabung',
+                        name: 'tgl_nabung',
+                        defaultContent: '-',
                     },
                     {
                         data: 'action',
@@ -70,6 +70,16 @@
             $("div.btnAdd").html(`
                 <a href="{{ route('apps.kurban.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
             `);
+
+            $(document).on('click', '.editModal', function(e) {
+                e.preventDefault();
+
+                // let list = $(this).data('list');
+                // let nama = $(this).data('nama');
+
+                // $('.editModalTitle').html(nama);
+                // $('.editModalContent').html(list);
+            })
 
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()

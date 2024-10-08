@@ -20,6 +20,20 @@ class PesertaRepository implements PesertaRepositoryInterface
             });
     }
 
+    public function getPesertaByUuid($uuid)
+    {
+        try {
+            $peserta = Peserta::with(['kategori', 'keuangan' => function ($query) {
+                $query->select('peserta_id', 'nominal');
+            }])->where('uuid', $uuid)->first();
+        } catch (\Throwable $th) {
+            return 'null';
+        }
+
+        return $peserta;
+    }
+
+
     public function store($payload)
     {
         try {

@@ -10,7 +10,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="nominal" class="col-sm-2 col-form-label">Nomor HP</label>
+    <label for="nominal" class="col-sm-2 col-form-label">Nominal</label>
     <div class="col-sm-10">
         <input type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" class="form-control" id="nominal" name="nominal" placeholder="Masukkan Nominal Nabung" required/>
         <div class="invalid-feedback text-12">Kolom nominal tidak boleh kosong.</div>
