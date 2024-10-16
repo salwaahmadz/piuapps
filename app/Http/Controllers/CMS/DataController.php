@@ -4,24 +4,24 @@ namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
-use App\Repositories\Interfaces\PesertaRepositoryInterface;
+use App\Repositories\Interfaces\ParticipantRepositoryInterface;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
     private $categoryRepository;
-    private $pesertaRepository;
+    private $participantRepository;
     
     function __construct(
         CategoryRepositoryInterface $categoryRepo,
-        PesertaRepositoryInterface $pesertaRepo
+        ParticipantRepositoryInterface $participantRepo
     )
     {
         $this->categoryRepository = $categoryRepo;  
-        $this->pesertaRepository = $pesertaRepo;      
+        $this->participantRepository = $participantRepo;      
     }
 
-    public function kategori(Request $request)
+    public function categories(Request $request)
     {
         $params = [
             'kategori' => $request->kategori
@@ -30,12 +30,12 @@ class DataController extends Controller
         return $this->categoryRepository->getAll($params)->get();
     }
 
-    public function peserta(Request $request)
+    public function partisipants(Request $request)
     {
         $params = [
             'nama' => $request->nama
         ];
 
-        return $this->pesertaRepository->getAll($params)->get();
+        return $this->participantRepository->getAll($params)->get();
     }
 }

@@ -18,35 +18,35 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('cms.pages.kategori.index');
+        return view('cms.pages.category.index');
     }
 
     public function list()
     {
         $params = [];
 
-        $kategori = $this->categoryRepository->getAll($params);
-        return DataTables::eloquent($kategori)
-            ->addColumn('action', 'cms.pages.kategori.table_action')
+        $categories = $this->categoryRepository->getAll($params);
+        return DataTables::eloquent($categories)
+            ->addColumn('action', 'cms.pages.category.table_action')
             ->addIndexColumn()
             ->toJson();
     }
 
     public function create()
     {
-        $kategori = [];
+        $category = [];
 
-        return view('cms.pages.kategori.create', compact('kategori'));
+        return view('cms.pages.category.create', compact('category'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kategori' => 'required|string|max:16',
+            'category' => 'required|string|max:16',
         ]);
 
         $payload = [
-            'kategori' => $request->kategori,
+            'kategori' => $request->category,
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -56,13 +56,45 @@ class CategoryController extends Controller
         if ($response == 'error') {
             return response()->json([
                 "error" => true,
-                "message" => "Gagal menambahkan kategori, silahkan coba lagi!"
+                "message" => "Failed to add category, please try again!",
             ], 400);
         }
 
         return response()->json([
             'error' => false,
-            'message' => 'Kategori baru berhasil ditambahkan!'
+            'message' => 'Category has been added!',
+        ], 200);
+    }
+
+    public function edit($id){
+
+        $category = $this->categoryRepository->getCategoryById($id);
+
+        return view('cms.pages.category.edit', compact('category'));
+    }
+
+    public function update(Request $request) {
+        $request->validate([
+            'category' => 'required|string|max:16',
+        ]);
+
+        $payload = [
+            'kategori' => $request->category,
+            'updated_at' => now(),
+        ];
+
+        $response = $this->categoryRepository->update($payload, $request->id);
+
+        if ($response == 'error') {
+            return response()->json([
+                "error" => true,
+                "message" => "Failed to update category, please try again!",
+            ], 400);
+        }
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Category has been updated!',
         ], 200);
     }
 
@@ -73,8 +105,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "error" => false,
-            "message" => "Kategori berhasil dihapus",
-            "data" => $id
-        ]);
+            "message" => "category berhasil dihapus",
+        ], 200);
     }
 }

@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Mentor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'pengajar';
 
     protected $fillable = [
-        'kategori',
+        'uuid',
+        'nama',
+        'kategori_id',
+        'tgl_lahir',
+        'nomor_hp',
+        'status',
+        'created_at',
+        'updated_at'
     ];
-
-    public function peserta()
-    {
-        return $this->hasMany(Participant::class, 'kategori_id', 'id');
-    }
 }

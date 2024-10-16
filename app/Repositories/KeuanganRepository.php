@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Finance;
 use App\Repositories\Interfaces\KeuanganRepositoryInterface;
-use App\Models\Peserta;
+use App\Models\Participant;
 use App\Models\Keuangan;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
 
     public function getAll($params)
     {
-        return Peserta::query()->with('kategori', 'kategori')
+        return Participant::query()->with('kategori', 'kategori')
             ->when(!empty($params['kategori_id']), function ($q) use ($params) {
                 $q->where('peserta.kategori_id', $params['kategori_id']);
             })
@@ -23,7 +24,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
 
     public function getKurban($params)
     {
-        return Keuangan::query()->with('peserta')
+        return Finance::query()->with('peserta')
             ->when(!empty($params['peserta_id']), function ($q) use ($params) {
                 $q->where('keuangan.peserta_id', $params['peserta_id']);
             })
@@ -35,7 +36,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
     public function getPesertaKurbanDetail($id)
     {
         try {
-            return Keuangan::with('peserta')->where('peserta_id', $id)->get();
+            return Finance::with('peserta')->where('peserta_id', $id)->get();
         } catch (\Throwable $th) {
             return 'null';
         }
@@ -48,7 +49,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
         try {
             DB::beginTransaction();
 
-            $keuangan = Keuangan::create($payload);
+            $keuangan = Finance::create($payload);
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -64,7 +65,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
         try {
             DB::beginTransaction();
 
-            $nominal = Keuangan::where('id', $payload['id'])->update($payload);
+            $nominal = Finance::where('id', $payload['id'])->update($payload);
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -83,7 +84,7 @@ class KeuanganRepository implements KeuanganRepositoryInterface
         try {
             DB::beginTransaction();
 
-            $peserta = Peserta::create($payload);
+            $peserta = Finance::create($payload);
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -97,6 +98,6 @@ class KeuanganRepository implements KeuanganRepositoryInterface
 
     public function destroy($id)
     {
-        return Peserta::where('id', $id)->delete();
+        return Participant::where('id', $id)->delete();
     }
 }

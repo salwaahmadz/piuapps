@@ -70,57 +70,76 @@
             <span class="menu-header-text">Data</span>
         </li>
 
-        <li class="menu-item {{ Request::is('apps/peserta*') ? 'active' : '' }}">
-            <a href="{{ route('apps.peserta.index') }}" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/participant*') ? 'active' : '' }}">
+            <a href="{{ route('apps.participant.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Peserta">Peserta</div>
+                <div data-i18n="Participants">Participants</div>
             </a>
         </li>
 
-        <li class="menu-item {{ Request::is('apps/pengajar*') ? 'active' : '' }}">
-            <a href="{{ route('apps.pengajar.index') }}" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/mentor*') ? 'active' : '' }}">
+            <a href="{{ route('apps.mentor.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Pengajar">Pengajar</div>
+                <div data-i18n="mentor">Mentors</div>
             </a>
         </li>
 
         <li class="menu-item {{ Request::is('apps/category*') ? 'active' : '' }}">
             <a href="{{ route('apps.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
-                <div data-i18n="Kategori">Kategori</div>
+                <div data-i18n="Category">Category</div>
             </a>
         </li>
 
-        <!-- Kegiatan -->
+        <!-- Activity -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Kegiatan</span>
+            <span class="menu-header-text">Activity</span>
         </li>
 
         <li class="menu-item {{ Request::is('apps/kegiatan*') ? 'active' : '' }}">
             <a href="{{ route('apps.kegiatan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-                <div data-i18n="Kegiatan">Kegiatan</div>
+                <div data-i18n="Attendance">Attendance</div>
+            </a>
+        </li>
+        
+        <li class="menu-item">
+            <a href="#" class="menu-link" onclick="showAlert()">
+                <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+                <div data-i18n="Calendar">Calendar</div>
             </a>
         </li>
 
         <!-- Keuangan -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Keuangan</span>
+            <span class="menu-header-text">Finance</span>
         </li>
 
         <li class="menu-item {{ Request::is('apps/keuangan/kurban*') ? 'active' : '' }}">
             <a href="{{ route('apps.kurban.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
-                <div data-i18n="Kurban">Kurban</div>
+                <div data-i18n="Qurban">Qurban</div>
             </a>
         </li>
 
         <li class="menu-item {{ Request::is('apps/keuangan/kas*') ? 'active' : '' }}">
             <a href="{{ route('apps.kas.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
-                <div data-i18n="Kas">Kas</div>
+                <div data-i18n="Cash">Cash</div>
             </a>
         </li>
     </ul>
 </aside>
 <!-- / Menu -->
+
+@push('js')
+    <script>
+        function showAlert() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Feature is coming soon',
+                text: "Let's pray I have time to develop the feature lmao",
+            })
+        }
+    </script>
+@endpush

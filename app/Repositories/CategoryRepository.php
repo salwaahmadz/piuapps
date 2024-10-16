@@ -18,6 +18,13 @@ class CategoryRepository implements CategoryRepositoryInterface
             });
     }
 
+    public function getCategoryById($id)
+    {
+        $category = Category::where('id', $id)->first();
+
+        return $category;
+    }
+
     public function store($payload)
     {
         try {
@@ -35,6 +42,15 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $kategori;
     }
 
+    public function update($payload, $id)
+    {
+        $category = Category::where('id', $id);
+
+        $category->update($payload);
+
+        return $category;
+    }
+    
     public function destroy($id)
     {
         return Category::where('id', $id)->delete();
