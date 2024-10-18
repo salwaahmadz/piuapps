@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 24)->unique();
+            $table->uuid('uuid')->unique()->nullable();
+            $table->string('name', 100);
             $table->text('description')->nullable();
+            $table->date('date');
+            $table->datetime('valid_until');
             $table->boolean('is_active')->default(true);
             $table->tinyInteger('created_by')->nullable();
             $table->timestamps();
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('attendances');
     }
 };

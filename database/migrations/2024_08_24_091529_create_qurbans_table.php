@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('qurbans', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 24)->unique();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->uuid('uuid')->unique()->nullable();
+            $table->foreignId('participant_id')->constrained(table: 'participants', indexName: 'participant_qurban_id');
+            $table->integer('amount');
+            $table->date('date');
             $table->tinyInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('qurbans');
     }
 };

@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Interfaces;
 
-interface CategoryRepositoryInterface
+interface ParticipantRepositoryInterface
 {
     public function getAll($params);
-    public function getCategoryById($id);
+    public function getParticipantByUuid($uuid);
     public function store($payload);
     public function update($payload, $id);
-    public function destroy($id);
+    public function destroy($uuid);
 }

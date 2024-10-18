@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 24)->unique();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
+        Schema::create('mentor_has_attendances', function (Blueprint $table) {
+            $table->foreignId('attendance_id')->constrained(table: 'attendances', indexName: 'pivot_attendance_id');
+            $table->foreignId('mentor_id')->constrained(table: 'participants', indexName: 'pivot_mentor_id');
+            $table->string('status');
             $table->tinyInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('mentor_has_attendances');
     }
 };

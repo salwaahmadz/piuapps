@@ -2,13 +2,12 @@
 @section('content')
 
 @section('title')
-    Tambah Peserta -
+    Add New Category -
 @endsection
 
 {{-- BREAD CRUMB --}}
 <h4 class="fw-bold py-3 mb-4">
-    <a href="{{ route('apps.dashboard') }}"><span class="text-muted fw-light">Dashboard /</span></a>
-    <a href="{{ route('apps.peserta.index') }}"><span class="text-muted fw-light">Peserta /</span></a> Tambah Peserta
+    <a href="{{ route('apps.category.index') }}"><span class="text-muted fw-light">Category /</span></a> Edit New Category
 </h4>
 
 {{-- CONTENT START --}}
@@ -17,13 +16,13 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Formulir Data</h5>
-                    <small class="text-muted float-end">Lengkapi formulir dibawah ini</small>
+                    <h5 class="mb-0">Category Form</h5>
+                    <small class="text-muted float-end">Complete the form below</small>
                 </div>
                 <div class="card-body">
-                    <form id="formPeserta" action="{{ route('apps.peserta.store') }}" method="POST">
+                    <form id="formCategory" action="{{ route('apps.category.update') }}" method="POST">
                         @csrf
-                        @include('cms.pages.peserta.fields')
+                        @include('cms.pages.category.fields')
                     </form>
                 </div>
             </div>

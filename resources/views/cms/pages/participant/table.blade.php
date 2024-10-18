@@ -1,10 +1,12 @@
 <table class="table table-striped" id="table">
     <thead>
         <th>No</th>
-        <th>Nama</th>
-        <th>Kategori</th>
-        <th>Tanggal Lahir</th>
-        <th>Aksi</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Birthdate</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Action</th>
     </thead>
     <tbody>
     </tbody>
@@ -20,19 +22,15 @@
     <script>
         $(document).ready(function() {
             var table = $('#table').DataTable({
-                // dom: '<"d-flex justify-content-between mb-3"<"col-3"><"d-flex justify-content-end"f<"div.btnModal">>>rt<"d-flex justify-content-between align-items-center mt-3 p-3"ip>',
                 dom: '<"d-flex justify-content-between mb-3"<"col-lg-3"><"d-flex justify-content-end ms-4"f<"div.btnAdd">>>rt<"d-flex justify-content-between align-items-center mt-3 p-3"ip>',
                 processing: true,
                 serverSide: true,
                 searchDelay: 1000,
                 order: [
-                    [0, 'asc']
+                    [1, 'asc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.peserta.list') !!}",
-                    data: {
-                        course: "{{ Request::get('kategori') }}"
-                    }
+                    url: "{!! route('apps.participant.list') !!}",
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -41,19 +39,32 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'nama',
+                        data: 'name',
+                        name: 'name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'kategori.kategori',
-                        name: 'kategori.kategori',
+                        data: 'category.name',
+                        name: 'category.name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'tgl_lahir',
-                        name: 'tgl_lahir',
+                        data: 'birthdate',
+                        name: 'birthdate',
                         defaultContent: '-'
+                    },
+                    {
+                        data: 'phone_number',
+                        name: 'phone_number',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'is_active',
+                        name: 'is_active',
+                        defaultContent: '-',
+                        render: function(data) {
+                            return data == 1 ? 'Active' : 'Not Active'; 
+                        }
                     },
                     {
                         data: 'action',
@@ -66,31 +77,32 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.peserta.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
+                <a href="{{ route('apps.participant.create') }}" class="btn btn-primary ms-3 me-3" title="Add New Participant">Add Data</a>
             `);
 
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()
 
-                let id = $(this).data('id');
-                let url = "{!! route('apps.peserta.destroy') !!}";
+                let uuid = $(this).data('uuid');
+                let name = $(this).data('name');
+                let url = "{!! route('apps.participant.destroy') !!}";
 
                 Swal.fire({
-                    title: 'Hapus Peserta?',
+                    title: 'Delete Participant?',
                     icon: 'warning',
-                    text: "Apakah kamu yakin ingin menghapus peserta ini?",
+                    text: `Are you sure you want to delete ${name}?`,
                     showCancelButton: true,
                     confirmButtonColor: '#DC3741',
                     cancelButtonColor: '#6C757D',
-                    cancelButtonText: 'Batal',
-                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'No',
+                    confirmButtonText: 'Yes, delete it!',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
                             url: url,
                             data: {
-                                id: id
+                                uuid: uuid
                             },
                             success: function(res) {
                                 Swal.fire({
@@ -98,13 +110,13 @@
                                     icon: 'success',
                                     text: res.message,
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 2000
                                 })
                                 table.draw()
                             },
                             error: function(res) {
                                 Swal.fire({
-                                    title: 'Terjadi kesalahan',
+                                    title: 'Something went wrong!',
                                     icon: 'warning',
                                     text: res.responseJSON.message
                                 })
