@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peserta', function (Blueprint $table) {
+        Schema::create('mentors', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique()->nullable();
-            $table->foreignId('kategori_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('nama', 100);
-            $table->date('tgl_lahir');
-            $table->string('nomor_hp')->nullable()->unique();
-            $table->boolean('status')->default(true);
+            $table->string('name', 100);
+            $table->date('birthdate');
+            $table->string('phone_number')->nullable()->unique();
+            $table->boolean('is_active')->default(true);
+            $table->tinyInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peserta');
+        Schema::dropIfExists('mentors');
     }
 };

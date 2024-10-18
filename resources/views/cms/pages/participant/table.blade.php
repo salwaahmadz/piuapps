@@ -39,28 +39,28 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'nama',
+                        data: 'name',
+                        name: 'name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'category.kategori',
-                        name: 'category.kategori',
+                        data: 'category.name',
+                        name: 'category.name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'tgl_lahir',
-                        name: 'tgl_lahir',
+                        data: 'birthdate',
+                        name: 'birthdate',
                         defaultContent: '-'
                     },
                     {
-                        data: 'nomor_hp',
-                        name: 'nomor_hp',
+                        data: 'phone_number',
+                        name: 'phone_number',
                         defaultContent: '-'
                     },
                     {
-                        data: 'status',
-                        name: 'status',
+                        data: 'is_active',
+                        name: 'is_active',
                         defaultContent: '-',
                         render: function(data) {
                             return data == 1 ? 'Active' : 'Not Active'; 

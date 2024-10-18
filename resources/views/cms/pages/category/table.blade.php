@@ -1,7 +1,9 @@
 <table class="table table-striped" id="table">
     <thead>
         <th>No</th>
-        <th>Category</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
         <th>Created At</th>
         <th>Updated At</th>
         <th>Action</th>
@@ -37,9 +39,21 @@
                         searchable: false
                     },
                     {
-                        data: 'kategori',
-                        name: 'kategori',
+                        data: 'name',
+                        name: 'name',
                         defaultContent: '-'
+                    },
+                    {
+                        data: 'description',
+                        name: 'description',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'is_active',
+                        name: 'is_active',
+                        render: function(data) {
+                            return data == 1 ? "Active" : "Not Active"
+                        }
                     },
                     {
                         data: 'created_at',
@@ -60,7 +74,7 @@
                     },
                 ],
                 columnDefs: [{
-                    targets: [2, 3],
+                    targets: [4, 5],
                     render: function(data) {
                         return moment(data).format('DD/MM/YYYY');
                     }

@@ -42,11 +42,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => 'required|string|max:16',
+            'name' => 'required|string|max:24',
+            'description' => 'nullable|string',
+            'status' => 'required|boolean',
         ]);
 
         $payload = [
-            'kategori' => $request->category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'is_active' => $request->status,
+            'created_by' => auth()->user()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -66,20 +71,26 @@ class CategoryController extends Controller
         ], 200);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $category = $this->categoryRepository->getCategoryById($id);
 
         return view('cms.pages.category.edit', compact('category'));
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $request->validate([
-            'category' => 'required|string|max:16',
+            'name' => 'required|string|max:24',
+            'description' => 'nullable|string',
+            'status' => 'required|boolean',
         ]);
 
         $payload = [
-            'kategori' => $request->category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'is_active' => $request->status,
             'updated_at' => now(),
         ];
 
@@ -105,7 +116,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "error" => false,
-            "message" => "category berhasil dihapus",
+            "message" => "category has been deleted!",
         ], 200);
     }
 }

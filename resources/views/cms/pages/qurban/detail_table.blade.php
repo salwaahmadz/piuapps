@@ -1,10 +1,10 @@
 <table class="table table-striped" id="table">
     <thead>
         <th>No</th>
-        <th>Nama</th>
-        <th>Nominal</th>
-        <th>Tanggal Nabung</th>
-        <th class="text-center">Aksi</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th class="text-center">Action</th>
     </thead>
     <tbody>
     </tbody>
@@ -28,9 +28,9 @@
                     [3, 'desc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.kurban.detail_list') !!}",
+                    url: "{!! route('apps.qurban.detail_list') !!}",
                     data: {
-                        peserta: "{{ Request::segment(4) }}"
+                        participant: "{{ Request::segment(4) }}"
                     }
                 },
                 columns: [{
@@ -40,21 +40,21 @@
                         searchable: false
                     },
                     {
-                        data: 'peserta.nama',
-                        name: 'peserta.nama',
+                        data: 'participant.name',
+                        name: 'participant.name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'nominal',
-                        name: 'nominal',
+                        data: 'amount',
+                        name: 'amount',
                         defaultContent: '-',
                         render: function(data) {
                             return formatRp(data)
                         }
                     },
                     {
-                        data: 'tgl_nabung',
-                        name: 'tgl_nabung',
+                        data: 'date',
+                        name: 'date',
                         defaultContent: '-',
                     },
                     {
@@ -68,29 +68,19 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.kurban.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
+                <a href="{{ route('apps.qurban.create') }}" class="btn btn-primary ms-3 me-3" title="Add New Qurban Savings">Add Data</a>
             `);
-
-            $(document).on('click', '.editModal', function(e) {
-                e.preventDefault();
-
-                // let list = $(this).data('list');
-                // let nama = $(this).data('nama');
-
-                // $('.editModalTitle').html(nama);
-                // $('.editModalContent').html(list);
-            })
 
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()
 
                 let id = $(this).data('id');
-                let url = "{!! route('apps.kurban.destroy') !!}";
+                let url = "{!! route('apps.qurban.destroy') !!}";
 
                 Swal.fire({
-                    title: 'Hapus Record?',
+                    title: 'Delete Record?',
                     icon: 'warning',
-                    text: "Apakah kamu yakin ingin menghapus record ini?",
+                    text: "Are you sure you want to delete this record?",
                     showCancelButton: true,
                     confirmButtonColor: '#DC3741',
                     cancelButtonColor: '#6C757D',
@@ -110,13 +100,13 @@
                                     icon: 'success',
                                     text: res.message,
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 2000
                                 })
                                 table.draw()
                             },
                             error: function(res) {
                                 Swal.fire({
-                                    title: 'Terjadi kesalahan',
+                                    title: 'Something went wrong!',
                                     icon: 'warning',
                                     text: res.responseJSON.message
                                 })

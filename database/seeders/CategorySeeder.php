@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class KategoriSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +13,10 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'kategori'   => 'APR',
+            'name'   => 'AR',
+            'description' => 'Umur 17 - 22 Tahun',
+            'is_active' => true,
+            'created_by' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ];

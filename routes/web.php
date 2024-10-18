@@ -56,34 +56,37 @@ Route::group(['prefix' => 'apps'], function () {
             Route::post('/update', [\App\Http\Controllers\CMS\CategoryController::class, 'update'])->name('apps.category.update');
             Route::post('/destroy', [\App\Http\Controllers\CMS\CategoryController::class, 'destroy'])->name('apps.category.destroy');
         });
-        
-        Route::group(['prefix' => 'kegiatan'], function () {
-            Route::get('/', [\App\Http\Controllers\CMS\ActivityController::class, 'index'])->name('apps.kegiatan.index');
-            Route::get('/list', [\App\Http\Controllers\CMS\ActivityController::class, 'list'])->name('apps.kegiatan.list');
-            Route::get('/create', [\App\Http\Controllers\CMS\ActivityController::class, 'create'])->name('apps.kegiatan.create');
-            Route::post('/store', [\App\Http\Controllers\CMS\ActivityController::class, 'store'])->name('apps.kegiatan.store');
-            Route::post('/destroy', [\App\Http\Controllers\CMS\ActivityController::class, 'destroy'])->name('apps.kegiatan.destroy');
+
+        Route::group(['prefix' => 'activity'], function () {
+            Route::group(['prefix' => 'attendance'], function () {
+                Route::get('/', [\App\Http\Controllers\CMS\ActivityController::class, 'index'])->name('apps.attendance.index');
+                Route::get('/list', [\App\Http\Controllers\CMS\ActivityController::class, 'list'])->name('apps.attendance.list');
+                Route::get('/create', [\App\Http\Controllers\CMS\ActivityController::class, 'create'])->name('apps.attendance.create');
+                Route::post('/store', [\App\Http\Controllers\CMS\ActivityController::class, 'store'])->name('apps.attendance.store');
+                Route::post('/destroy', [\App\Http\Controllers\CMS\ActivityController::class, 'destroy'])->name('apps.attendance.destroy');
+            });
         });
 
-        Route::group(['prefix' => 'keuangan'], function () {
-            Route::group(['prefix' => 'kurban'], function () {
-                Route::get('/', [\App\Http\Controllers\CMS\FinanceController::class, 'indexKurban'])->name('apps.kurban.index');
-                Route::get('/list', [\App\Http\Controllers\CMS\FinanceController::class, 'listKurban'])->name('apps.kurban.list');
-                Route::get('/{uuid}/detail', [\App\Http\Controllers\CMS\FinanceController::class, 'detailKurban'])->name('apps.kurban.detail');
-                Route::get('/detail-list', [\App\Http\Controllers\CMS\FinanceController::class, 'detailListKurban'])->name('apps.kurban.detail_list');
-                Route::post('/update-nominal' , [\App\Http\Controllers\CMS\FinanceController::class, 'updateNominalKurban'])->name('apps.kurban.update_nominal');
-                Route::get('/create', [\App\Http\Controllers\CMS\FinanceController::class, 'createKurban'])->name('apps.kurban.create');
-                Route::post('/store', [\App\Http\Controllers\CMS\FinanceController::class, 'storeKurban'])->name('apps.kurban.store');
-                Route::post('/destroy', [\App\Http\Controllers\CMS\FinanceController::class, 'destroyKurban'])->name('apps.kurban.destroy');
+        Route::group(['prefix' => 'finance'], function () {
+            Route::group(['prefix' => 'qurban'], function () {
+                Route::get('/', [\App\Http\Controllers\CMS\QurbanController::class, 'index'])->name('apps.qurban.index');
+                Route::get('/list', [\App\Http\Controllers\CMS\QurbanController::class, 'list'])->name('apps.qurban.list');
+                Route::get('/{uuid}/detail', [\App\Http\Controllers\CMS\QurbanController::class, 'detail'])->name('apps.qurban.detail');
+                Route::get('/detail-list', [\App\Http\Controllers\CMS\QurbanController::class, 'detailList'])->name('apps.qurban.detail_list');
+                Route::get('/create', [\App\Http\Controllers\CMS\QurbanController::class, 'create'])->name('apps.qurban.create');
+                Route::post('/store', [\App\Http\Controllers\CMS\QurbanController::class, 'store'])->name('apps.qurban.store');
+                Route::get('/edit/{uuid}', [\App\Http\Controllers\CMS\QurbanController::class, 'edit'])->name('apps.qurban.edit');
+                Route::post('/update-amount', [\App\Http\Controllers\CMS\QurbanController::class, 'updateAmount'])->name('apps.qurban.update_amount');
+                Route::post('/destroy', [\App\Http\Controllers\CMS\QurbanController::class, 'destroy'])->name('apps.qurban.destroy');
             });
 
-            Route::group(['prefix' => 'kas'], function () {
-                Route::get('/', [\App\Http\Controllers\CMS\FinanceController::class, 'indexks'])->name('apps.kas.index');
-                Route::get('/list', [\App\Http\Controllers\CMS\FinanceController::class, 'listks'])->name('apps.kas.list');
-                Route::get('/create', [\App\Http\Controllers\CMS\FinanceController::class, 'createks'])->name('apps.kas.create');
-                Route::post('/store', [\App\Http\Controllers\CMS\FinanceController::class, 'storeks'])->name('apps.kas.store');
-                Route::post('/destroy', [\App\Http\Controllers\CMS\FinanceController::class, 'destroyks'])->name('apps.kas.destroy');
-            });
+            // Route::group(['prefix' => 'kas'], function () {
+            // Route::get('/', [\App\Http\Controllers\CMS\FinanceController::class, 'indexks'])->name('apps.kas.index');
+            // Route::get('/list', [\App\Http\Controllers\CMS\FinanceController::class, 'listks'])->name('apps.kas.list');
+            // Route::get('/create', [\App\Http\Controllers\CMS\FinanceController::class, 'createks'])->name('apps.kas.create');
+            // Route::post('/store', [\App\Http\Controllers\CMS\FinanceController::class, 'storeks'])->name('apps.kas.store');
+            // Route::post('/destroy', [\App\Http\Controllers\CMS\FinanceController::class, 'destroyks'])->name('apps.kas.destroy');
+            // });
         });
 
         Route::group(['prefix' => 'data'], function () {

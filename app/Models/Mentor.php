@@ -10,16 +10,12 @@ class Mentor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'pengajar';
-
     protected $fillable = [
         'uuid',
-        'nama',
-        'kategori_id',
-        'tgl_lahir',
-        'nomor_hp',
-        'status',
-        'created_at',
-        'updated_at'
+        'name',
+        'birthdate',
+        'phone_number',
+        'is_active',
+        'created_by'
     ];
 }

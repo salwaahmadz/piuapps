@@ -38,25 +38,25 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'nama',
+                        data: 'name',
+                        name: 'name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'tgl_lahir',
-                        name: 'tgl_lahir',
+                        data: 'birthdate',
+                        name: 'birthdate',
                         defaultContent: '-'
                     },
                     {
-                        data: 'nomor_hp',
-                        name: 'nomor_hp',
+                        data: 'phone_number',
+                        name: 'phone_number',
                         defaultContent: '-'
                     },
                     {
-                        data: 'status',
-                        name: 'status',
+                        data: 'is_active',
+                        name: 'is_active',
                         render: function(data) {
-                            return data === 1 ? "Active" : "Not Active"
+                            return data == 1 ? "Active" : "Not Active"
                         }
                     },
                     {
@@ -76,7 +76,7 @@
             $(document).on('click', '.btnDelete', function(e) {
                 e.preventDefault()
 
-                let id = $(this).data('id');
+                let uuid = $(this).data('uuid');
                 let name = $(this).data('name');
                 let url = "{!! route('apps.mentor.destroy') !!}";
 
@@ -95,7 +95,7 @@
                             type: "POST",
                             url: url,
                             data: {
-                                id: id
+                                uuid: uuid
                             },
                             success: function(res) {
                                 Swal.fire({

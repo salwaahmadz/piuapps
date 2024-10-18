@@ -2,14 +2,11 @@
 @section('content')
 
 @section('title')
-    Kurban -
+    Qurban -
 @endsection
 
 {{-- BREAD CRUMB --}}
-<h4 class="fw-bold py-3 mb-4"><a href="{{ route('apps.dashboard') }}">
-  <span class="text-muted fw-light">Dashboard /</span></a>
-  <span class="text-muted fw-light">Keuangan /</span> Kurban
-</h4>
+<h4 class="fw-bold py-3 mb-4">Qurban</h4>
 
 {{-- CONTENT START --}}
 <div class="container-fluid">
@@ -17,7 +14,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h6 class="card-title m-0">Daftar Keuangan Kurban</h6>
+                    <h4 class="card-title m-0 fw-bold">List of Qurban Savings</h4>
                 </div>
                 <div class="table-responsive text-nowrap">
                     @include('cms.pages.qurban.table')

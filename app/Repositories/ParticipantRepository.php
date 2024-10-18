@@ -12,11 +12,11 @@ class ParticipantRepository implements ParticipantRepositoryInterface
     public function getAll($params)
     {
         return Participant::query()->with('category', 'category')
-            ->when(!empty($params['kategori_id']), function ($q) use ($params) {
-                $q->where('peserta.kategori_id', $params['kategori_id']);
+            ->when(!empty($params['id']), function ($q) use ($params) {
+                $q->where('participants.category_id', $params['category_id']);
             })
-            ->when(!empty($params['nama']), function ($q) use ($params) {
-                $q->where('peserta.nama', 'LIKE', '%' . $params['nama'] . '%');
+            ->when(!empty($params['name']), function ($q) use ($params) {
+                $q->where('participants.name', 'ILIKE', '%' . $params['name'] . '%');
             });
     }
 

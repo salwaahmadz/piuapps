@@ -6,22 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Finance extends Model
+class Qurban extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'keuangan';
-
     protected $fillable = [
         'uuid',
-        'peserta_id',
-        'nominal',
-        'type',
-        'tgl_nabung',
-        'created_by'
+        'participant_id',
+        'amount',
+        'date',
     ];
 
-    public function peserta()
+    public function participant()
     {
         return $this->belongsTo(Participant::class);
     }

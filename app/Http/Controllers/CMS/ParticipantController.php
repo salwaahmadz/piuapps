@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
-use App\Models\Participant;
 use App\Repositories\Interfaces\ParticipantRepositoryInterface;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -44,7 +44,7 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:36',
+            'name' => 'required|string|max:100',
             'category' => 'required|integer',
             'birthdate' => 'required|date',
             'phone_number' => 'nullable|numeric',
@@ -52,11 +52,12 @@ class ParticipantController extends Controller
 
         $payload = [
             'uuid' => Str::uuid(),
-            'nama' => $request->name,
-            'kategori_id' => $request->category,
-            'tgl_lahir' => $request->birthdate,
-            'nomor_hp' => $request->phone_number,
-            'status' => $request->status,
+            'category_id' => $request->category,
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'phone_number' => $request->phone_number,
+            'is_active' => $request->status,
+            'created_by' => Auth::user()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -92,7 +93,7 @@ class ParticipantController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:36',
+            'name' => 'required|string|max:100',
             'category' => 'required|integer',
             'birthdate' => 'required|date',
             'phone_number' => 'nullable|numeric',
@@ -100,11 +101,13 @@ class ParticipantController extends Controller
 
         $payload = [
             'uuid' => Str::uuid(),
-            'nama' => $request->name,
-            'kategori_id' => $request->category,
-            'tgl_lahir' => $request->birthdate,
-            'nomor_hp' => $request->phone_number,
-            'status' => $request->status,
+            'category_id' => $request->category,
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'phone_number' => $request->phone_number,
+            'is_active' => $request->status,
+            'created_by' => Auth::user()->id,
+            'created_at' => now(),
             'updated_at' => now(),
         ];
 

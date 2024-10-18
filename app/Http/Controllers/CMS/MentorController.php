@@ -52,10 +52,11 @@ class MentorController extends Controller
 
         $payload = [
             'uuid' => Str::uuid(),
-            'nama' => $request->name,
-            'tgl_lahir' => $request->birthdate,
-            'nomor_hp' => $request->phone_number,
-            'status' => $request->status,
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'phone_number' => $request->phone_number,
+            'is_active' => $request->status,
+            'created_by' => auth()->user()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -112,7 +113,7 @@ class MentorController extends Controller
                 'message' => 'Failed to update mentor, please try again!'
             ], 400);
         }
-        
+
         return response()->json([
             'error' => false,
             'message' => 'Mentor has been updated!'
@@ -121,8 +122,8 @@ class MentorController extends Controller
 
     public function destroy(Request $request)
     {
-        $id = $request->id;
-        $this->mentorRepository->destroy($id);
+        $uuid = $request->uuid;
+        $this->mentorRepository->destroy($uuid);
 
         return response()->json([
             "error" => false,

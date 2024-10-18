@@ -30,10 +30,10 @@ class DataController extends Controller
         return $this->categoryRepository->getAll($params)->get();
     }
 
-    public function partisipants(Request $request)
+    public function participants(Request $request)
     {
         $params = [
-            'nama' => $request->nama
+            'name' => $request->nama
         ];
 
         return $this->participantRepository->getAll($params)->get();

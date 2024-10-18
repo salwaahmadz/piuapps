@@ -96,8 +96,8 @@
             <span class="menu-header-text">Activity</span>
         </li>
 
-        <li class="menu-item {{ Request::is('apps/kegiatan*') ? 'active' : '' }}">
-            <a href="{{ route('apps.kegiatan.index') }}" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/activity/attendance*') ? 'active' : '' }}">
+            <a href="{{ route('apps.attendance.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
                 <div data-i18n="Attendance">Attendance</div>
             </a>
@@ -115,15 +115,15 @@
             <span class="menu-header-text">Finance</span>
         </li>
 
-        <li class="menu-item {{ Request::is('apps/keuangan/kurban*') ? 'active' : '' }}">
-            <a href="{{ route('apps.kurban.index') }}" class="menu-link">
+        <li class="menu-item {{ Request::is('apps/finance/qurban*') ? 'active' : '' }}">
+            <a href="{{ route('apps.qurban.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
                 <div data-i18n="Qurban">Qurban</div>
             </a>
         </li>
 
-        <li class="menu-item {{ Request::is('apps/keuangan/kas*') ? 'active' : '' }}">
-            <a href="{{ route('apps.kas.index') }}" class="menu-link">
+        <li class="menu-item">
+            <a href="#" class="menu-link" onclick="showAlert()">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
                 <div data-i18n="Cash">Cash</div>
             </a>

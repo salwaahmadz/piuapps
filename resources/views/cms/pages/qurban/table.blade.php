@@ -1,10 +1,9 @@
 <table class="table table-striped" id="table">
     <thead>
         <th>No</th>
-        <th>Nama</th>
-        <th>Tipe</th>
-        <th>Total Tabungan</th>
-        <th class="text-center">Aksi</th>
+        <th>Name</th>
+        <th>Total Savings</th>
+        <th class="text-center">Action</th>
     </thead>
     <tbody>
     </tbody>
@@ -28,7 +27,7 @@
                     [1, 'asc']
                 ],
                 ajax: {
-                    url: "{!! route('apps.kurban.list') !!}",
+                    url: "{!! route('apps.qurban.list') !!}",
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -37,21 +36,13 @@
                         searchable: false
                     },
                     {
-                        data: 'peserta.nama',
-                        name: 'peserta.nama',
+                        data: 'participant.name',
+                        name: 'participant.name',
                         defaultContent: '-'
                     },
                     {
-                        data: 'type',
-                        name: 'type',
-                        defaultContent: '-',
-                        render: function(data) {
-                            return data.charAt(0).toUpperCase() + data.slice(1)
-                        }
-                    },
-                    {
-                        data: 'total_nominal',
-                        name: 'total_nominal',
+                        data: 'total_amount',
+                        name: 'total_amount',
                         defaultContent: '-',
                         render: function(data) {
                             return formatRp(data)
@@ -68,54 +59,8 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.kurban.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">Tambah</a>
+                <a href="{{ route('apps.qurban.create') }}" class="btn btn-primary ms-3 me-3" title="Add New Qurban Savings">Add Data</a>
             `);
-
-            $(document).on('click', '.btnDelete', function(e) {
-                e.preventDefault()
-
-                let id = $(this).data('id');
-                let url = "{!! route('apps.kurban.destroy') !!}";
-
-                Swal.fire({
-                    title: 'Hapus Record?',
-                    icon: 'warning',
-                    text: "Apakah kamu yakin ingin menghapus record ini?",
-                    showCancelButton: true,
-                    confirmButtonColor: '#DC3741',
-                    cancelButtonColor: '#6C757D',
-                    cancelButtonText: 'Batal',
-                    confirmButtonText: 'Hapus',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: url,
-                            data: {
-                                id: id
-                            },
-                            success: function(res) {
-                                Swal.fire({
-                                    title: 'Success',
-                                    icon: 'success',
-                                    text: res.message,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                                table.draw()
-                            },
-                            error: function(res) {
-                                Swal.fire({
-                                    title: 'Terjadi kesalahan',
-                                    icon: 'warning',
-                                    text: res.responseJSON.message
-                                })
-                            }
-                        })
-                    }
-                })
-
-            })
         });
     </script>
 @endpush

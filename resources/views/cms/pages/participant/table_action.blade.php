@@ -3,7 +3,7 @@
         <i class="bx bx-pencil"></i>
     </a>
     
-    <a href="#" class="btnDelete" data-uuid="{{ @$uuid }}" data-name="{{ @$nama }}" title="Delete Participant">
+    <a href="#" class="btnDelete" data-uuid="{{ @$uuid }}" data-name="{{ @$name }}" title="Delete Participant">
         <i class="bx bx-trash"></i>
     </a>
 </div>

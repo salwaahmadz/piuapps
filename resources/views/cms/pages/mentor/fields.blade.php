@@ -33,8 +33,8 @@
     <div class="col-sm-10">
         <select id="status" name="status" class="form-select" required>
             @if (@$participant)
-                <option value="1" {{ @$participant->status == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ @$participant->status == 0 ? 'selected' : '' }}>Not Active</option>
+                <option value="1" {{ @$participant->is_active == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ @$participant->is_active == 0 ? 'selected' : '' }}>Not Active</option>
             @else
                 <option value="1">Active</option>
                 <option value="0">Not Active</option>

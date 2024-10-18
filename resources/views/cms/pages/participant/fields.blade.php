@@ -62,7 +62,7 @@
     <label for="name" class="col-sm-2 col-form-label">Full Name</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" id="name" name="name"
-            placeholder="Enter participant full name" value="{{ @$participant->nama }}" required />
+            placeholder="Enter participant full name" value="{{ @$participant->name }}" required />
         <div class="invalid-feedback text-12">Column name cannot be empty.</div>
     </div>
 </div>
@@ -81,7 +81,7 @@
     <label for="birthdate" class="col-md-2 col-form-label">Birthdate</label>
     <div class="col-md-10">
         <input class="form-control" type="date" id="birthdate" name="birthdate"
-            value="{{ @$participant->tgl_lahir }}" required />
+            value="{{ @$participant->birthdate }}" required />
         <div class="invalid-feedback text-12">Column birthdate cannot be empty.</div>
     </div>
 </div>
@@ -92,7 +92,7 @@
         <input type="text" inputmode="numeric" pattern="[0-9]*"
             oninput="this.value = this.value.replace(/[^0-9]/g, '');" class="form-control" id="phone_number"
             name="phone_number" placeholder="Enter participant phone number (can be empty)"
-            value="{{ @$participant->nomor_hp }}" />
+            value="{{ @$participant->phone_number }}" />
     </div>
 </div>
 
@@ -101,8 +101,8 @@
     <div class="col-sm-10">
         <select id="status" name="status" class="form-select" required>
             @if(@$participant)
-                <option value="1" {{ @$participant->status == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ @$participant->status == 0 ? 'selected' : '' }}>Not Active</option>
+                <option value="1" {{ @$participant->is_active == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ @$participant->is_active == 0 ? 'selected' : '' }}>Not Active</option>
             @else
                 <option value="1">Active</option>
                 <option value="0">Not Active</option>
@@ -132,7 +132,7 @@
                     datatype: 'json',
                     data: function(params) {
                         var queryParameters = {
-                            kategori: params.term
+                            name: params.term
                         }
                         return queryParameters;
                     },
@@ -140,7 +140,7 @@
                         return {
                             results: $.map(data, function(item) {
                                 return {
-                                    text: item.kategori,
+                                    text: item.name,
                                     id: item.id
                                 }
                             })
@@ -151,7 +151,7 @@
         });
 
         @if (@$participant)
-            let newOptionCourse = new Option("{{ @$participant->category->kategori }}", "{{ @$participant->category->id }}", true, true);
+            let newOptionCourse = new Option("{{ @$participant->category->name }}", "{{ @$participant->category->id }}", true, true);
             $('#category').append(newOptionCourse).trigger('change');
         @endif
 

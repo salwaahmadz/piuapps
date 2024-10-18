@@ -10,14 +10,14 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'categories';
-
     protected $fillable = [
-        'kategori',
+        'name',
+        'description',
+        'is_active'
     ];
 
-    public function peserta()
+    public function participant()
     {
-        return $this->hasMany(Participant::class, 'kategori_id', 'id');
+        return $this->hasMany(Participant::class, 'category_id', 'id');
     }
 }

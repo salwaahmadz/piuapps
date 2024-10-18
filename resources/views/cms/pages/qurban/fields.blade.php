@@ -1,37 +1,3 @@
-<input type="hidden" name="id" id="kurban_id" value="{{ @$kurban->id }}">
-
-<div class="row mb-3">
-    <label for="peserta" class="col-sm-2 col-form-label">Nama</label>
-    <div class="col-sm-10">
-        <select id="peserta" name="peserta" data-placeholder="Pilih Peserta" style="width: 100%;" required>
-        </select>
-        <div class="invalid-feedback text-12">Kolom peserta tidak boleh kosong.</div>
-    </div>
-</div>
-
-<div class="row mb-3">
-    <label for="nominal" class="col-sm-2 col-form-label">Nominal</label>
-    <div class="col-sm-10">
-        <input type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" class="form-control" id="nominal" name="nominal" placeholder="Masukkan Nominal Nabung" required/>
-        <div class="invalid-feedback text-12">Kolom nominal tidak boleh kosong.</div>
-    </div>
-</div>
-
-<div class="mb-3 row">
-    <label for="tgl_nabung" class="col-md-2 col-form-label">Tanggal Nabung</label>
-    <div class="col-md-10">
-        <input class="form-control" type="date" id="tgl_nabung" name="tgl_nabung" required />
-        <div class="invalid-feedback text-12">Kolom tanggal nabung tidak boleh kosong.</div>
-    </div>
-</div>
-
-<div class="row justify-content-end">
-    <div class="col-sm-10">
-        <button type="button" class="btn btn-primary btnSubmit me-2">{{ @$kurban ? 'Edit' : 'Tambah' }}</button>
-        <a href="{{ route('apps.kurban.index') }}" class="btn btn-secondary">Batal</a>
-    </div>
-</div>
-
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <style>
@@ -86,19 +52,60 @@
     </style>
 @endpush
 
+<input type="hidden" name="id" id="qurban_id" value="{{ @$qurban->id }}">
+
+<div class="row mb-3">
+    <label for="participant" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+        @if (empty(@$qurban))
+            <select id="participant" name="participant" data-placeholder="Choose Participant" style="width: 100%;"
+                required>
+            </select>
+            <div class="invalid-feedback text-12">Column name cannot be empty.</div>
+        @else
+            <span class="form-control" readonly>{{ @$qurban->participant->name }}</span>
+        @endif
+    </div>
+</div>
+
+<div class="row mb-3">
+    <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+    <div class="col-sm-10">
+        <input type="text" inputmode="numeric" pattern="[0-9]*"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');" class="form-control" id="amount" name="amount"
+            placeholder="Enter savings amount" value="{{ @$qurban->amount }}" required />
+        <div class="invalid-feedback text-12">Column amount cannot be empty.</div>
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label for="date" class="col-md-2 col-form-label">Date</label>
+    <div class="col-md-10">
+        <input class="form-control" type="date" id="date" name="date" value="{{ @$qurban->date }}" required />
+        <div class="invalid-feedback text-12">Column date cannot be empty.</div>
+    </div>
+</div>
+
+<div class="row justify-content-end">
+    <div class="col-sm-10">
+        <button type="button" class="btn btn-primary btnSubmit me-2">{{ @$qurban ? 'Edit Data' : 'Add Data' }}</button>
+        <a href="{{ route('apps.qurban.index') }}" class="btn btn-secondary">Cancel</a>
+    </div>
+</div>
+
 @push('js')
     <script src="{{ asset('assets/js/select2.bundle.js') }}" type="text/javascript"></script>
 
     <script>
         $(document).ready(function() {
-            $('#peserta').select2({
+            $('#participant').select2({
                 ajax: {
-                    url: "{!! route('data.peserta') !!}",
+                    url: "{!! route('data.participants') !!}",
                     datatype: 'json',
                     width: 'resolve',
                     data: function(params) {
                         var queryParameters = {
-                            nama: params.term
+                            name: params.term
                         }
                         return queryParameters;
                     },
@@ -106,7 +113,7 @@
                         return {
                             results: $.map(data, function(item) {
                                 return {
-                                    text: item.nama,
+                                    text: item.name,
                                     id: item.id
                                 }
                             })
@@ -118,18 +125,18 @@
             });
         });
 
-        $(document).on('submit', 'formKurban', function(e) {
+        $(document).on('submit', 'formQurban', function(e) {
             e.preventDefault();
         });
 
         $(document).on('click', '.btnSubmit', function(e) {
             e.preventDefault();
 
-            var form = $('#formKurban');
-            var formData = new FormData(document.getElementById("formKurban"));
-            var actionURL = $('#formKurban').attr('action');
+            var form = $('#formQurban');
+            var formData = new FormData(document.getElementById("formQurban"));
+            var actionURL = $('#formQurban').attr('action');
 
-            if ($('#formKurban')[0].checkValidity() === false) {
+            if ($('#formQurban')[0].checkValidity() === false) {
                 e.preventDefault();
                 e.stopPropagation();
             } else {
@@ -148,13 +155,13 @@
                         }, 2000);
 
                         Swal.fire({
-                            title: 'Berhasil',
+                            title: 'Success',
                             icon: 'success',
                             text: res.message,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000
                         }).then(function() {
-                            window.location.href = "{{ route('apps.kurban.index') }}";
+                            window.location.href = "{{ route('apps.qurban.index') }}";
                         });
                     },
                     error: function(res) {
@@ -163,7 +170,7 @@
                         }, 2000);
 
                         Swal.fire({
-                            title: 'Terjadi Kesalahan',
+                            title: 'Something went wrong!',
                             icon: 'warning',
                             text: res.responseJSON.message
                         });
