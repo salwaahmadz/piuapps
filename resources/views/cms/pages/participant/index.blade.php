@@ -2,11 +2,11 @@
 @section('content')
 
 @section('title')
-    Participants -
+    Peserta -
 @endsection
 
 {{-- BREAD CRUMB --}}
-<h4 class="fw-bold py-3 mb-4">Participants</h4>
+<h4 class="fw-bold py-3 mb-4">Peserta</h4>
 
 {{-- CONTENT START --}}
 <div class="container-fluid">
@@ -14,7 +14,7 @@
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0 fw-bold">List of Participants</h4>
+                <h4 class="card-title m-0 fw-bold">Daftar Peserta</h4>
             </div>
             <div class="table-responsive text-nowrap">
                 @include('cms.pages.participant.table')

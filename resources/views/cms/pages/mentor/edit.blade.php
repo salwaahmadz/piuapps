@@ -16,8 +16,8 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Mentor Form</h5>
-                    <small class="text-muted float-end">Complete the form below</small>
+                    <h5 class="mb-0">Form Mentor</h5>
+                    <small class="text-muted float-end">Lengkapi form di bawah ini.</small>
                 </div>
                 <div class="card-body">
                     <form id="formMentor" action="{{ route('apps.mentor.update') }}" method="POST">

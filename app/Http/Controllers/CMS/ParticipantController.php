@@ -67,14 +67,13 @@ class ParticipantController extends Controller
         if ($response == 'error') {
             return response()->json([
                 "error" => true,
-                "message" => "Failed to add participant, please try again!",
-                "data" => $payload
+                "message" => "Gagal menambahkan peserta, silahkan coba lagi!",
             ], 400);
         }
 
         return response()->json([
             "error" => false,
-            "message" => "Participant has been added!"
+            "message" => "Peserta berhasil ditambahkan!",
         ], 200);
     }
 
@@ -116,13 +115,13 @@ class ParticipantController extends Controller
         if ($response == 'error') {
             return response()->json([
                 "error" => true,
-                "message" => "Failed to update participant, please try again!",
+                "message" => "Gagal mengupdate peserta, silahkan coba lagi!",
             ], 400);
         }
 
         return response()->json([
             'error' => false,
-            "message" => "Participant has been updated!",
+            "message" => "Peserta berhasil diupdate!",
         ], 200);
     }
 
@@ -133,7 +132,7 @@ class ParticipantController extends Controller
 
         return response()->json([
             "error"   => false,
-            "message" => "Participant has been deleted!",
+            "message" => "Peserta berhasil dihapus!",
         ], 200);
     }
 }

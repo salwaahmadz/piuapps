@@ -66,13 +66,13 @@ class MentorController extends Controller
         if ($reponse == 'error') {
             return response()->json([
                 'error' => true,
-                'message' => 'Failed to add mentor, please try again!'
+                'message' => 'Gagal menambahkan mentor, silahkan coba lagi!'
             ], 400);
         }
 
         return response()->json([
             'error' => false,
-            'message' => 'Mentor has been added!'
+            'message' => 'Berhasil menambahkan mentor!'
         ], 200);
     }
 
@@ -110,13 +110,13 @@ class MentorController extends Controller
         if ($reponse == 'error') {
             return response()->json([
                 'error' => true,
-                'message' => 'Failed to update mentor, please try again!'
+                'message' => 'Gagal mengupdate mentor, silahkan coba lagi!'
             ], 400);
         }
 
         return response()->json([
             'error' => false,
-            'message' => 'Mentor has been updated!'
+            'message' => 'Mentor berhasil diupdate!'
         ], 200);
     }
 
@@ -127,7 +127,7 @@ class MentorController extends Controller
 
         return response()->json([
             "error" => false,
-            "message" => "Mentor has been deleted!",
+            "message" => "Mentor berhasil dihapus!",
         ], 200);
     }
 }

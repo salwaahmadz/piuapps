@@ -11,20 +11,19 @@ class DataController extends Controller
 {
     private $categoryRepository;
     private $participantRepository;
-    
+
     function __construct(
         CategoryRepositoryInterface $categoryRepo,
         ParticipantRepositoryInterface $participantRepo
-    )
-    {
-        $this->categoryRepository = $categoryRepo;  
-        $this->participantRepository = $participantRepo;      
+    ) {
+        $this->categoryRepository = $categoryRepo;
+        $this->participantRepository = $participantRepo;
     }
 
     public function categories(Request $request)
     {
         $params = [
-            'kategori' => $request->kategori
+            'name' => $request->kategori
         ];
 
         return $this->categoryRepository->getAll($params)->get();
