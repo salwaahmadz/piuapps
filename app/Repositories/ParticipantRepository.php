@@ -16,7 +16,7 @@ class ParticipantRepository implements ParticipantRepositoryInterface
                 $q->where('participants.category_id', $params['category_id']);
             })
             ->when(!empty($params['name']), function ($q) use ($params) {
-                $q->where('participants.name', 'ILIKE', '%' . $params['name'] . '%');
+                $q->where('participants.name', 'LIKE', '%' . $params['name'] . '%');
             });
     }
 

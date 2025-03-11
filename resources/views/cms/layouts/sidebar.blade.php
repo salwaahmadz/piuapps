@@ -73,46 +73,46 @@
         <li class="menu-item {{ Request::is('apps/participant*') ? 'active' : '' }}">
             <a href="{{ route('apps.participant.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Participants">Participants</div>
+                <div data-i18n="Participants">Peserta</div>
             </a>
         </li>
 
         <li class="menu-item {{ Request::is('apps/mentor*') ? 'active' : '' }}">
             <a href="{{ route('apps.mentor.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="mentor">Mentors</div>
+                <div data-i18n="mentor">Mentor</div>
             </a>
         </li>
 
         <li class="menu-item {{ Request::is('apps/category*') ? 'active' : '' }}">
             <a href="{{ route('apps.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
-                <div data-i18n="Category">Category</div>
+                <div data-i18n="Category">Kateogori</div>
             </a>
         </li>
 
         <!-- Activity -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Activity</span>
+            <span class="menu-header-text">Aktivitas</span>
         </li>
 
         <li class="menu-item {{ Request::is('apps/activity/attendance*') ? 'active' : '' }}">
             <a href="{{ route('apps.attendance.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-                <div data-i18n="Attendance">Attendance</div>
+                <div data-i18n="Attendance">Sesi Absensi</div>
             </a>
         </li>
         
         <li class="menu-item">
             <a href="#" class="menu-link" onclick="showAlert()">
                 <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-                <div data-i18n="Calendar">Calendar</div>
+                <div data-i18n="Calendar">Kalendar</div>
             </a>
         </li>
 
         <!-- Keuangan -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Finance</span>
+            <span class="menu-header-text">Keuangan</span>
         </li>
 
         <li class="menu-item {{ Request::is('apps/finance/qurban*') ? 'active' : '' }}">
@@ -125,7 +125,7 @@
         <li class="menu-item">
             <a href="#" class="menu-link" onclick="showAlert()">
                 <i class="menu-icon tf-icons bx bx-wallet"></i>
-                <div data-i18n="Cash">Cash</div>
+                <div data-i18n="Cash">Uang Kas</div>
             </a>
         </li>
     </ul>

@@ -1,12 +1,5 @@
 <table class="table table-striped" id="table">
     <thead>
-        <th>No</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Birthdate</th>
-        <th>Phone Number</th>
-        <th>Status</th>
-        <th>Action</th>
     </thead>
     <tbody>
     </tbody>
@@ -35,40 +28,47 @@
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id',
+                        title: 'No',
                         className: "text-center",
                         searchable: false
                     },
                     {
                         data: 'name',
                         name: 'name',
+                        title: 'Nama',
                         defaultContent: '-'
                     },
                     {
                         data: 'category.name',
                         name: 'category.name',
+                        title: 'Kategori',
                         defaultContent: '-'
                     },
                     {
                         data: 'birthdate',
                         name: 'birthdate',
+                        title: 'Tanggal Lahir',
                         defaultContent: '-'
                     },
                     {
                         data: 'phone_number',
                         name: 'phone_number',
+                        title: 'Nomor HP',
                         defaultContent: '-'
                     },
                     {
                         data: 'is_active',
                         name: 'is_active',
+                        title: 'Status',
                         defaultContent: '-',
                         render: function(data) {
-                            return data == 1 ? 'Active' : 'Not Active'; 
+                            return data == 1 ? 'Aktif' : 'Tidak Aktif';
                         }
                     },
                     {
                         data: 'action',
                         name: 'action',
+                        title: 'Aksi',
                         className: "text-center",
                         searchable: false,
                         orderable: false
@@ -77,7 +77,7 @@
             });
 
             $("div.btnAdd").html(`
-                <a href="{{ route('apps.participant.create') }}" class="btn btn-primary ms-3 me-3" title="Add New Participant">Add Data</a>
+                <a href="{{ route('apps.participant.create') }}" class="btn btn-primary ms-3 me-3" title="Tambah Peserta Baru">+ Peserta</a>
             `);
 
             $(document).on('click', '.btnDelete', function(e) {
@@ -88,14 +88,14 @@
                 let url = "{!! route('apps.participant.destroy') !!}";
 
                 Swal.fire({
-                    title: 'Delete Participant?',
+                    title: 'Hapus Peserta?',
                     icon: 'warning',
-                    text: `Are you sure you want to delete ${name}?`,
+                    text: `Apakah kamu yakin ingin menghapus ${name}?`,
                     showCancelButton: true,
                     confirmButtonColor: '#DC3741',
                     cancelButtonColor: '#6C757D',
-                    cancelButtonText: 'No',
-                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya, hapus!',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -106,7 +106,7 @@
                             },
                             success: function(res) {
                                 Swal.fire({
-                                    title: 'Success',
+                                    title: 'Sukses',
                                     icon: 'success',
                                     text: res.message,
                                     showConfirmButton: false,
@@ -116,7 +116,7 @@
                             },
                             error: function(res) {
                                 Swal.fire({
-                                    title: 'Something went wrong!',
+                                    title: 'Terjadi kesalahan!',
                                     icon: 'warning',
                                     text: res.responseJSON.message
                                 })

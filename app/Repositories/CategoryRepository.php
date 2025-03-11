@@ -13,8 +13,8 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function getAll($params)
     {
         return Category::query()
-            ->when(!empty($params['kategori']), function ($q) use ($params) {
-                $q->where('categories.kategori', 'LIKE', '%' . $params['kategori'] . '%');
+            ->when(!empty($params['name']), function ($q) use ($params) {
+                $q->where('categories.name', '=', '%' . $params['name'] . '%');
             });
     }
 
