@@ -5,7 +5,7 @@
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="{{ asset('/assets') }}"
+  data-assets-path="{{ asset('assets') }}"
   data-template="vertical-menu-template-free"
 >
   <head>
