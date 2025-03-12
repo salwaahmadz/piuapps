@@ -17,7 +17,7 @@
   class="light-style customizer-hide"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="{{ asset('/assets') }}"
+  data-assets-path="{{ asset('assets') }}"
   data-template="vertical-menu-template-free"
 >
   <head>
