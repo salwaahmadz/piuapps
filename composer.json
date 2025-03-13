@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.8",
         "spatie/laravel-activitylog": "^4.8.0",
         "spatie/laravel-permission": "^6.7",
-        "yajra/laravel-datatables": "^10.1"
+        "yajra/laravel-datatables": "^10.1",
+        "ext-zip": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
