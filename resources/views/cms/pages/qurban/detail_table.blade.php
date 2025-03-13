@@ -11,11 +11,11 @@
 </table>
 
 @push('css')
-    @include('CMS.layouts.datatables_css')
+    @include('cms.layouts.datatables_css')
 @endpush
 
 @push('js')
-    @include('CMS.layouts.datatables_js')
+    @include('cms.layouts.datatables_js')
 
     <script>
         $(document).ready(function() {
